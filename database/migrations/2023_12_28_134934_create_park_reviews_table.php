@@ -14,6 +14,15 @@ return new class extends Migration
         Schema::create('park_reviews', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('restaurant_id');
+            $table->longText('comments')->nullable();
+            $table->float('safety');
+            $table->float('maintenance');
+            $table->float('family_friendliness');
+            $table->float('overall_rating');
+
+            $table->foreign('restaurant_id')->references('id')->on('restaurants');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

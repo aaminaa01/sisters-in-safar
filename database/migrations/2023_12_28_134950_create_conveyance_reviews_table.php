@@ -14,6 +14,17 @@ return new class extends Migration
         Schema::create('conveyance_reviews', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('conveyance_id');
+            $table->longText('comments')->nullable();
+            $table->float('safety');
+            $table->float('reliability');
+            $table->float('customer_support');
+            $table->float('overall_rating');
+
+            $table->foreign('conveyance_id')->references('id')->on('conveyances');
+            $table->foreign('user_id')->references('id')->on('users');
+
         });
     }
 
