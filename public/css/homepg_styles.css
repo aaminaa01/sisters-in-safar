@@ -1,0 +1,172 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* color: #151015; */
+    box-sizing: border-box;
+}
+footer {
+    background-color: #151015;
+    height: 10%;
+}
+
+/* header styling */
+header {
+    padding-top: 40px;
+    text-align: center;
+    height: auto;
+    min-height: 80vh;
+    width: 100%;
+    background-image: url(../images/boat_in_mountains.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: rgba(255,255,255,0.6);
+    background-blend-mode: lighten;
+    
+}
+.navbar {
+    text-align: center;
+    background-color: #ffeada;
+    position: fixed;
+    padding: 14px 16px;
+    padding-right: 30px;
+    top: 0;
+    width: 100%;
+    box-shadow:3px 3px 12px;
+  }
+#title {
+    font-size:xx-large;
+    text-align: center;
+    padding-top: 10%;
+  }
+#menu {
+    float: right;
+    text-align: center;
+    padding-left: 2px;
+}
+#menu a{
+    float: left;
+    display: block;
+    color: #151015;
+    text-align: center;
+    padding: 14px 16px;
+    padding-right: 30px;
+    text-decoration: none;
+    font-size: 17px;
+    
+}
+
+.dropdown {
+    float: left;
+    position: relative;
+}
+ 
+.dropdown .dropbtn {
+    font-size: 17px;
+    color: #151015;
+    padding: 14px 16px;
+    margin: 0;
+    cursor: pointer; 
+  }
+
+.dropdown-content {
+    display: none;
+    background-color: #f9f9f9;
+    min-width: 94px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 100%; /*Adjust this value to control the dropdown's position */
+    border-radius: 5px;
+    
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block; /* Change display property to block */
+    border-bottom: 1px solid #ffeada; /* Add a border between items */
+    width: 94px; 
+    border-radius: 5px;
+  }
+
+ #menu a:hover, .dropdown:hover .dropbtn {
+    background-color: #ffb5a4;
+    color: white;
+    border-radius: 5px;
+ }
+
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+    display: block;
+  }
+/* Show the dropdown menu when the user moves the mouse over the dropdown button */
+.dropdown:hover .dropdown-content {
+    display:block;
+  }
+.logo {
+    float: left;
+    margin: 0;
+    padding: 0%;
+}
+#title {
+    color: #aa8371;
+}
+#tagline {
+    color: #151015;
+}
+.col-1 {width: 8.33%;}
+.col-2 {width:16.66%;}
+.col-3 {width:25%;}
+.col-4 {width:33.33%;}
+.col-5 {width:41.66%;}
+.col-6 {width:50%;}
+.col-7 {width:58.33%;}
+.col-8 {width:66.66%;}
+.col-9 {width:75%;}
+.col-10 {width:83.33%;}
+.col-11 {width:91.66%;}
+.col-12 {width:100%;}
+
+.pg-content {
+    display: flex;
+    margin: 2%;
+    padding: 5px;
+    align-self:center;
+}
+
+.about-section {
+    font-weight: lighter;
+    float: left;
+    margin-right: 2%;
+}
+.what-we-do {
+    background-color: #ffd5a4;
+    border-radius: 15px;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.mission {
+    text-align: center;
+    align-items: center;
+    float: right;
+    background-color: #ffb5a4;
+    height: auto;
+    color: white;
+    padding: 4px;
+    padding-top: 0%;
+    border-radius: 15px;
+}
+
+#active{
+    background-color: #ffb5a4;
+    color:white;
+    border-radius: 5px;
+    
+}

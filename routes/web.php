@@ -17,5 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/login','login');
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/destination/{slug}', 'DestinationController@show')->name('destination');
+Route::get('/travel_blogs', 'TravelBlogController@index')->name('travel_blogs');
+Route::get('/contact_us', 'ContactUsController@index')->name('contact_us');
+Route::get('/login', 'LoginController@index')->name('login');
+Route::get('/signup', 'SignupController@index')->name('signup');
+
+Route::view('/signup', 'signup')->name('signup');
+
+
+// Route::view('/login','login');
 Route::post('user', [UserAuthController::class, 'login']);

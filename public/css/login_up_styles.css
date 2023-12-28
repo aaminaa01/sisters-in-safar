@@ -1,0 +1,122 @@
+body{
+    justify-content: center;
+    text-align: center;
+}
+.pg-content {
+    width: 40%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 30%;
+    text-align: center;
+}
+.sign-in {
+    margin: 30px;
+    margin-right: 40px;
+}
+.sign-up {
+    margin: 30px;
+    margin-left: 40px;
+}
+
+.pg-content a{
+    color: #151015;
+}
+
+header {
+    min-height: 50vh;
+}
+#title {
+    padding: 5px;
+    padding-top: 40px;
+}
+.form-content{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px;
+    border-radius: 13px;
+    background-color: #ffb5a4;
+    /* border: 2px solid purple; */
+    text-align: center;
+    justify-content: center;
+}
+form{
+    justify-content: center;
+    width: 100%;
+}
+.field{
+    height: 50px;
+    width: 70%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 6px;
+    justify-content: center;
+}
+.field input,
+.field button{
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 6px;
+}
+.field input{
+    outline: none;
+    padding: 0 15px;
+    border: 1px solid#CACACA;
+}
+.field input:focus{
+    border-color:#151015;
+    box-shadow:0 0 8px 0 #151015;
+}
+.field button{
+    color: white;
+    background-color: #010105;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.button-field {
+    margin-left: auto;
+    margin-right: auto;
+}
+.field button:hover{
+    background-color: #010105;
+    box-shadow: #010105;
+}
+.form-link{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.forgot-pass {
+    margin-bottom: 1%;
+}
+.form-link span,
+.form-link a{
+    font-size: 16px;
+    font-weight: 400;
+    color: #232836;
+}
+.form a{
+    color: #0171d3;
+    text-decoration: none;
+}
+.form-content a:hover{
+    text-decoration: underline;
+}
+
+
+@media screen and (max-width: 400px) {
+    .form{
+        padding: 20px 10px;
+    }
+    
+}
