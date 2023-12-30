@@ -20,7 +20,6 @@ return new class extends Migration
             $table->float('safety');
             $table->float('reliability');
             $table->float('customer_support');
-            $table->float('overall_rating');
 
             $table->foreign('conveyance_id')->references('id')->on('conveyances');
             $table->foreign('user_id')->references('id')->on('users');

@@ -3,8 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\City;
 use App\Models\Park;
 use Illuminate\Database\Seeder;
+use App\Models\RestaurantReview;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,16 +16,33 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
+        // City::factory()->create([
+        //     'name' => 'Twin Cities',
         // ]);
 
-        \App\Models\Restaurant::factory(15)->create();
+        // City::factory()->create([
+        //     'name' => 'Lahore',
+        // ]);
 
-        Park::factory(15)->create();
+        // City::factory()->create([
+        //     'name' => 'Karachi',
+        // ]);
+        // \App\Models\User::factory(10)->create();
 
+        // // \App\Models\User::factory()->create([
+        // //     'name' => 'Test User',
+        // //     'email' => 'test@example.com',
+        // // ]);
+
+        // \App\Models\Restaurant::factory(15)->create();
+
+        // Park::factory(15)->create();
+
+        $restaurants = DB::table('restaurants')->get();
+        foreach($restaurants as $restaurant){
+            RestaurantReview::factory()->create([
+              'restaurant_id' => $restaurant->id,
+            ]);
+        }
     }
 }

@@ -3,9 +3,10 @@
 namespace Database\Factories;
 
 use App\Models\Restaurant;
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory; 
 use Illuminate\Support\Arr;
+use Faker\Generator as Faker;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Factories\Factory; 
 
 class RestaurantFactory extends Factory
 {
@@ -72,31 +73,22 @@ class RestaurantFactory extends Factory
 
     $allRestaurants = array_merge($cityOneRestaurants, $cityTwoRestaurants, $cityThreeRestaurants); // Merge all city arrays
 
-
+        do{
         // Shuffle restaurant names from all cities to avoid early selection bias
         Arr::shuffle($allRestaurants);
 
         // Check for available restaurants:
         $restaurantKey = null;
         $cityId = null;
-        $previousCityIds = []; // Initialize empty array to track used city IDs
-
-        while (!$cityId) {
-            $restaurantKey = array_rand($allRestaurants);
-
-            $cityId = $allRestaurants[$restaurantKey];
-            unset($allRestaurants[$restaurantKey]); // Remove used restaurant
-
-            // Handle cases where all city IDs have been used for the restaurant
-            if (in_array($cityId, $previousCityIds)) {
-                $restaurantKey = null; // Reset and try again
-                $cityId = null;
-            }
+        $restaurantKey = array_rand($allRestaurants);
+        $cityId = $allRestaurants[$restaurantKey];
+        $existingRecord =  DB::table('restaurants')->where('city_id',$cityId)->where('name', $restaurantKey)->find(1); 
+        if(!$existingRecord) {
+            return [
+                'name' => $restaurantKey,
+                'city_id' => $cityId,
+            ];
         }
-
-        return [
-            'name' => $restaurantKey,
-            'city_id' => $cityId,
-        ];
+        }while($existingRecord);
     }
 }

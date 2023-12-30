@@ -2,9 +2,10 @@
 
 namespace Database\Factories;
 
-use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory; 
 use Illuminate\Support\Arr;
+use Faker\Generator as Faker;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Factories\Factory; 
 
 
 /**
@@ -53,30 +54,23 @@ class ParkFactory extends Factory
     $allParks = array_merge($cityOneParks, $cityTwoParks, $cityThreeParks); // Merge all city arrays
 
 
+        
+    do{
         // Shuffle restaurant names from all cities to avoid early selection bias
         Arr::shuffle($allParks);
 
         // Check for available restaurants:
         $parkKey = null;
         $cityId = null;
-        $previousCityIds = []; // Initialize empty array to track used city IDs
-
-        while (!$cityId) {
-            $parkKey = array_rand($allParks);
-
-            $cityId = $allParks[$parkKey];
-            unset($allParks[$parkKey]); // Remove used restaurant
-
-            // Handle cases where all city IDs have been used for the restaurant
-            if (in_array($cityId, $previousCityIds)) {
-                $parkKey = null; // Reset and try again
-                $cityId = null;
-            }
+        $parkKey = array_rand($allParks);
+        $cityId = $allParks[$parkKey];
+        $existingRecord =  DB::table('parks')->where('city_id',$cityId)->where('name', $parkKey)->find(1); 
+        if(!$existingRecord) {
+            return [
+                'name' => $parkKey,
+                'city_id' => $cityId,
+            ];
         }
-
-        return [
-            'name' => $parkKey,
-            'city_id' => $cityId,
-        ];
+        }while($existingRecord);
     }
 }
