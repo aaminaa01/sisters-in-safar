@@ -21,7 +21,6 @@ return new class extends Migration
             $table->float('hygiene');
             $table->float('ambiance');
             $table->float('staff_behaviour');
-            $table->float('overall_rating');
 
             $table->foreign('restaurant_id')->references('id')->on('restaurants');
             $table->foreign('user_id')->references('id')->on('users');

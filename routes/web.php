@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\TwinCitiesController;
+use App\Http\Controllers\UncheckedRestaurantReviewController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,9 +23,6 @@ Route::get('/', function () {
 
 Route::get('/', function () {return view('home');
             });
-Route::get('/destination/{slug}', 'DestinationController@show')->name('destination');
-Route::get('/travel_blogs', 'TravelBlogController@index')->name('travel_blogs');
-Route::get('/contact_us', 'ContactUsController@index')->name('contact_us');
 
 // signing up
 Route::view('/signup', [UserAuthController::class, 'signup'])->name('signupform');
@@ -41,4 +39,8 @@ Route::any('/home', [HomeController::class, 'index'])->name('home');
 // city wise destinations
 Route::get('/home/twincities', [TwinCitiesController::class, 'home']);
 Route::get('/home/twincities/restaurants', [TwinCitiesController::class,'display_restaurants']);
+Route::any('/home/twincities/addRestaurantReview', [TwinCitiesController::class, 'add_restaurant_review']);
+
 Route::get('/home/twincities/restaurants/{restaurant}', [TwinCitiesController::class,'display_restaurant_reviews']);
+
+Route::post('/home/twincities/newRestaurantReview', [UncheckedRestaurantReviewController::class, 'addReview'])->name('addUncheckedRestaurantReview');

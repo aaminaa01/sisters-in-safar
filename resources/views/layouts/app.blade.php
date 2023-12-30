@@ -42,7 +42,15 @@
 
         
     </header>
-    
+    @auth 
+    <div class="container">
+    <form class="inline" method="post" action="/logout" id="logoutform>
+        @csrf
+        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-door-closed"></i>Logout</button>
+    </div>
+    @else 
+    <a href="/login">Sign in</a>
+    @endauth
     @yield('content')
 
     <footer></footer>
