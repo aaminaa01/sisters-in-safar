@@ -43,6 +43,7 @@
                 <label for="comments" class="form-label">Comments</label>
                 <textarea class="form-control" id="comments" name="comments" rows="3"></textarea>
             </div>
+            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
             <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
             <button type="submit" class="btn btn-primary">Submit Review</button>
         </form>

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+// use Illuminate\Support\Facades\Auth;
 
 class UserAuthController extends Controller
 {
@@ -45,6 +46,14 @@ class UserAuthController extends Controller
         $user->remember_token = Str::random(10);  // Generate a random remember_token
         // auth()->login($user);
         return redirect('/login');
+    }
+
+    public function logoutUser(Request $request){
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/')->with('message','You have been logged out.');
     }
 
 }

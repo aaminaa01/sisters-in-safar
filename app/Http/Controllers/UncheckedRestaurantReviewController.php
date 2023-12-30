@@ -32,4 +32,8 @@ class UncheckedRestaurantReviewController extends Controller
             return back()->with('error', 'Failed to submit review. Please try again.');
         }
     }
+
+    public function check_reviews(Request $request){
+        
+    }
 }

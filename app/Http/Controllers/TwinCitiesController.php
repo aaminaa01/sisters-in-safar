@@ -27,6 +27,7 @@ class TwinCitiesController extends Controller
     public function add_restaurant_review(Restaurant $restaurant){
         // echo "dfghj";
         if (Auth::check()){
+            // dd(auth()->user()->id, $restaurant->id);  // Add this line for debugging
             return view('twincities.add_restaurant_review',['restaurant'=>$restaurant]);
         }
         else{

@@ -211,4 +211,5 @@ return [
 
     'partitioned' => false,
 
+    'domain' => env('SESSION_DOMAIN', '')
 ];

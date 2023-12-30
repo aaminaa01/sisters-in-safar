@@ -15,14 +15,13 @@
                         <i class="fa fa-caret-down"></i>
                     </p>
                     <div class="dropdown-content">
-                        <a href="{{ route('destination', 'twin_cities') }}">Twin Cities</a>
-                        <a href="{{ route('destination', 'northern_areas') }}">Northern Areas</a>
-                        <a href="{{ route('destination', 'lahore') }}">Lahore</a>
-                        <a href="{{ route('destination', 'karachi') }}">Karachi</a>
+                        <a href="">Twin Cities</a>
+                        <a href="">Northern Areas</a>
+                        <a href="">Lahore</a>
+                        <a href="">Karachi</a>
                     </div>
                 </div>
-                <a href="{{ route('travel_blogs') }}">Travel Blogs</a>
-                <a style="color: rgb(85, 77, 77);" id="active" href="{{ route('contact_us') }}">Contact Us</a>
+                <a style="color: rgb(85, 77, 77);" id="active" href="/contact_us">Contact Us</a>
                 <a href="{{ route('login') }}">Sign In/ Sign Up</a>
             </div>
         </div>
@@ -32,27 +31,25 @@
             <h4 id="tagline">Empowering Pakistani women to travel and explore safely.</h4>
         </div>
     </header>
+@include('layouts.flash-message')
 
     <div class="pg-content row">
         <div class="col-5 send-a-msg">
             <h2>Get in touch!</h2>
-            <p style="font-weight: lighter;">Have questions or concerns? Want to learn how you can become a part of sistersInSafar? Send us a message at:<br> <a style="color: #aa8371;" href="mailto:contact@sistersInSafar.com">contact@sistersInSafar.com</a></p>
+            <p style="font-weight: lighter;">Have questions or concerns? Want to learn how you can become a part of sistersInSafar? Send us a message:</p>
             <div class="form">
-                <form action="#">
-                    <div class="input-box">
-                        <label for="name-box">Name:</label>
-                        <input type="text" id="name-box" placeholder="Name">
-                    </div>
+                <form action="/contact_us" method="post">
+                @csrf
                     <div class="input-box">
                         <label for="email-box">Email:</label>
-                        <input type="text"id="email-box" placeholder="Email">
+                        <input type="email" id="email-box" name="sender_email" placeholder="Email">
                     </div>
                     <div class="input-box message-box">
                         <label for="msg-box">Your message:</label>
-                        <textarea style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" type="textarea" id="msg-box" placeholder="Message"></textarea>
+                        <textarea name="message" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" type="textarea" id="msg-box" placeholder="Message"></textarea>
                     </div>
                     <div class="button">
-                        <input type="button" value="Send Now" >
+                        <input type="submit" value="Send Now" >
                     </div>
                 </form>
             </div>

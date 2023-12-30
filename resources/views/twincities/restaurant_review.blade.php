@@ -101,7 +101,18 @@ function generateStars($rating) {
     </div>
 
     <div class="addReview">
-    <a href="/home/twincities/addRestaurantReview">Add Review</a>
+    @auth
+        @php
+            $user = auth()->user();
+        @endphp
+        @if ( $user->role == 'admin')
+            <a href="{{ url('/pendingReviews/$restaurant->id') }}" >New Reviews</a>
+        @else
+            <a href="/home/twincities/addRestaurantReview/{{$restaurant->id}}">Add Review</a>
+        @endif
+    @else
+        <a href="/home/twincities/addRestaurantReview/{{$restaurant->id}}">Add Review</a>
+    @endauth
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
