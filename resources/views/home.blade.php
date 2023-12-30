@@ -4,28 +4,6 @@
 
 @section('content')
     <header>
-        <div class="navbar">
-            <div class="logo">
-                <a href="{{ route('home') }}"><img width="50px" height="50px" src="{{ asset('images/logo.PNG') }}" alt="logo"></a>
-            </div>
-            <div id="menu">
-                <a href="{{ route('home') }}" style="color: rgb(85, 77, 77);" id="active">Home</a>
-                <div class="dropdown">
-                    <p class="dropbtn">Destinations
-                        <i class="fa fa-caret-down"></i>
-                    </p>
-                    <div class="dropdown-content">
-                        <a href="{{ route('destination', 'twin_cities') }}">Twin Cities</a>
-                        <a href="{{ route('destination', 'northern_areas') }}">Northern Areas</a>
-                        <a href="{{ route('destination', 'lahore') }}">Lahore</a>
-                        <a href="{{ route('destination', 'karachi') }}">Karachi</a>
-                    </div>
-                </div>
-                <a href="{{ route('travel_blogs') }}">Travel Blogs</a>
-                <a href="{{ route('contact_us') }}">Contact Us</a>
-                <a href="{{ route('login') }}">Sign In/ Sign Up</a>
-            </div>
-        </div>
 
         <div id="title">
             <h1>sistersInسفر</h1>

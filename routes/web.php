@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\TwinCitiesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,15 +20,25 @@ Route::get('/', function () {
 });
 
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', function () {return view('home');
+            });
 Route::get('/destination/{slug}', 'DestinationController@show')->name('destination');
 Route::get('/travel_blogs', 'TravelBlogController@index')->name('travel_blogs');
 Route::get('/contact_us', 'ContactUsController@index')->name('contact_us');
-Route::get('/login', 'LoginController@index')->name('login');
-Route::get('/signup', 'SignupController@index')->name('signup');
 
-Route::view('/signup', 'signup')->name('signup');
+// signing up
+Route::view('/signup', [UserAuthController::class, 'signup'])->name('signupform');
+Route::post('/users/register', [UserAuthController::class, 'create'])->name('signup');
+
+// signing in
+Route::get('/login',[UserAuthController::class, 'login'])->name('login');
+Route::post('/users/authenticate', [UserAuthController::class, 'authenticate']);
 
 
-// Route::view('/login','login');
-Route::post('user', [UserAuthController::class, 'login']);
+Route::view('/home', 'home');
+Route::any('/home', [HomeController::class, 'index'])->name('home');
+
+// city wise destinations
+Route::get('/home/twincities', [TwinCitiesController::class, 'home']);
+Route::get('/home/twincities/restaurants', [TwinCitiesController::class,'display_restaurants']);
+Route::get('/home/twincities/restaurants/{restaurant}', [TwinCitiesController::class,'display_restaurant_reviews']);

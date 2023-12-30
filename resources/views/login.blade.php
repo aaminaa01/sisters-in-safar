@@ -1,61 +1,60 @@
-<!-- resources/views/login.blade.php -->
-
-@extends('layouts.app')
-
-@section('content')
-    <header>
-        <div class="navbar">
-            <div class="logo">
-                <a href="{{ route('home') }}"><img width="50px" height="50px" src="{{ asset('images/logo.PNG') }}" alt="logo"></a>
-            </div>
-            <div id="menu">
-                <a href="{{ route('home') }}">Home</a>
-                <div class="dropdown">
-                    <p class="dropbtn">Destinations
-                        <i class="fa fa-caret-down"></i>
-                    </p>
-                    <div class="dropdown-content">
-                        <a href="{{ route('destination', 'twin_cities') }}">Twin Cities</a>
-                        <a href="{{ route('destination', 'northern_areas') }}">Northern Areas</a>
-                        <a href="{{ route('destination', 'lahore') }}">Lahore</a>
-                        <a href="{{ route('destination', 'karachi') }}">Karachi</a>
-                    </div>
-                </div>
-                <a href="{{ route('travel_blogs') }}">Travel Blogs</a>
-                <a href="{{ route('contact_us') }}">Contact Us</a>
-                <a style="color: rgb(85, 77, 77);" id="active" href="{{ route('login') }}">Sign In/ Sign Up</a>
-            </div>
-        </div>
-
-        <div id="title">
-            <h1>sistersInسفر</h1>
-            <h4 id="tagline">Empowering Pakistani women to travel and explore safely.</h4>
-        </div>
-    </header>
-
-    <div class="pg-content">
-        <div class="form-content">
-            <div class="header">
-                <p style="text-align: center;"><h2>Sign in</h2></p>
-            </div>
-            <form action="#">
-                <div class="field input-field">
-                    <input type="email" placeholder="Email" class="input">
-                </div>
-                <div class="field input-field">
-                    <input type="password" placeholder="Password" class="password">
-                    <!-- <i class='bx bx-hide eye-icon'></i> -->
-                </div>
-                <div class="form-link">
-                    <a href="#" class="forgot-pass">Forgot password?</a>
-                </div>
-                <div class="field button-field">
-                    <button>Login</button>
-                </div>
-            </form>
-            <div class="form-link">
-                <span>Don't have an account? <a href="{{ route('signup') }}" class="link signup-link">Sign up!</a></span>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sistersInSafar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>               
+</head>
+<body>
+    @if(session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
     </div>
-@endsection
+    @endif
+     @if ($errors->any()) {
+     <div class="alert alert-danger">
+
+     <ul>
+     @foreach ($errors->all() as $error)
+     <li>{{ $error }}</li>
+     @endforeach
+     </ul>
+
+     </div>
+     @endif
+    <div class="container">
+        <form action="/users/authenticate" method="post">
+        @csrf
+            <div class="mb-6">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
+                @error('email')
+                    <p class="error text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
+            </div>
+            <div class="mb-6">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" name="password" class="form-control" value="{{ old('email') }}">
+                @error('password')
+                    <p class="error text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
+                <!-- <i class='bx bx-hide eye-icon'></i> -->
+            </div>
+            <div class="form-link">
+                <a href="#" class="forgot-pass">Forgot password?</a>
+            </div>
+            <div class="mb-6">
+                <button type="submit" class="py-2 px-4 hover-bg-pink text-white rounded">Login</button>
+            </div>
+   
+            <div class="mt-8">
+                <span>Don't have an account? <a href="signup.html" class="link signup-link">Sign up!</a></span>
+            </div>
+             </form>
+            
+    </div>
+</body>
+</html>
