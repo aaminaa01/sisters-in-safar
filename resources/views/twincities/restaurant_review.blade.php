@@ -6,10 +6,38 @@
     <title>sistersInSafar</title>
     <link rel="stylesheet" href="../../../css/homepg_styles.css">
     <link rel="stylesheet" href="../../../css/restaurants.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../../../images/logo.PNG" type="image/icon type">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   <style>
+      .checked {
+         color: orange;
+         }
+   </style>
 </head>
+@php
+function generateStars($rating) {
+    $stars = '';
+    $fullStars = floor($rating);
+    $halfStar = $rating % 1 !== 0;
 
+    for ($i = 0; $i < $fullStars; $i++) {
+        $stars .= '<span class="fa fa-star checked"></span>';
+    }
+
+    if ($halfStar) {
+        $stars .= '<span class="fa fa-star-half checked"></span>';
+        $fullStars++; // Increment fullStars as we added a half star
+    }
+
+    // Fill the remaining stars with empty stars
+    for ($j = $fullStars; $j < 5; $j++) {
+        $stars .= '<span class="fa fa-star"></span>';
+    }
+
+    return $stars;
+}
+@endphp
 <body>
     <div class="navbar">
       <div class="logo">
@@ -40,11 +68,7 @@
         <H4 id="tagline">Eateries around Pindi and Islamabad rated and reviewed by female travelers</H4>
         <p style="color:rgb(85, 77, 77); background-color: rgba(255, 255,255,0.5);">
             {{ $restaurant->name }}<br>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span><br>
+            
         </p>
     </div>
 
@@ -68,11 +92,11 @@
         @foreach($restaurant_reviews as $restaurant_review)
             <div class="card">
                 {{ $restaurant_review->comments }}<br>
-                Safety: <span class="safety">{{ $restaurant_review->safety }}</span><br>
-                hygiene: <span class="hygiene">{{ $restaurant_review->hygiene }}</span><br>
-                ambiance: <span class="ambiance">{{ $restaurant_review->ambiance }}</span><br>
-                staff_behaviour: <span class="staff_behaviour">{{ $restaurant_review->staff_behaviour }}</span>
-            </div>
+                <span class="safety" rating={{$restaurant_review->safety}}>Safety: {!! generateStars($restaurant_review->safety) !!}</span>
+               <span class="hygiene" rating={{$restaurant_review->hygiene}}>Hygiene: {!! generateStars($restaurant_review->hygiene) !!}</span>
+               <span class="ambience" rating={{$restaurant_review->ambience}}>Ambiance: {!! generateStars($restaurant_review->ambiance) !!}</span>
+               <span class="staff_behaviour" rating={{$restaurant_review->staff_behaviour}}>Staff Behaviour: {!! generateStars($restaurant_review->staff_behaviour) !!}</span>
+        </div>
         @endforeach
     </div>
 
@@ -88,8 +112,8 @@
 
             // Sort the array based on the selected criteria and order
             reviewsArray.sort(function(a, b) {
-                var aCriteria = parseFloat(a.querySelector('span.' + criteria).textContent);
-                var bCriteria = parseFloat(b.querySelector('span.' + criteria).textContent);
+                var aCriteria = parseInt((a.querySelector('span.' + criteria).getAttribute('rating')), 10);
+                var bCriteria = parseInt((b.querySelector('span.' + criteria).getAttribute('rating')), 10);
 
                 if (order === 'asc') {
                     return aCriteria - bCriteria;
@@ -106,6 +130,13 @@
                 reviewsContainer.appendChild(review);
             });
         }
+
+        // Function to get the numeric value of the star rating
+        function getRatingValue(ratingHtml) {
+            // Count the checked stars in the HTML string
+            return (ratingHtml.match(/fa-star checked/g) || []).length;
+        }
+
     </script>
 </body>
 </html>
