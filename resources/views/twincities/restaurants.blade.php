@@ -65,7 +65,6 @@
     </div>
 
     <a href="#" class="btn"><i class="fa fa-arrow-up"></i></a>
-    <a href="#" class="btn hidden-btn"><i class="fa fa-arrow-up"></i></a>
 
     <script>
         function sortResults() {

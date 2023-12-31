@@ -1,6 +1,9 @@
 @extends('templates.layout')
 @include('templates.flash-message')
-
+@section('titleContent')
+<H1>Parks in the Twin Cities</H1>
+    <H4 id="tagline">Parks and outdoor attractions rated and reviewed by female travelers</H4>
+@endsection
 @section('content')   
     <h1>Parks in City 1</h1>
 
@@ -22,7 +25,7 @@
 
     <div>
         <label for="sortCriteria">Sort by(hight to low):</label>
-        <select id="sortCriteria" onchange="sortResults()">
+        <select id="sortCriteria" class="btnColor" onchange="sortResults()">
             <option value="safety">Safety</option>
             <option value="maintenance">Maintenance</option>
             <option value="family_friendliness">Family Friendliness</option>
@@ -37,9 +40,9 @@
                 </a>
                 <p>Number of Reviews: {{ $park->review_count }}</p>
                 <p>
-                    Average Ratings: 
-                    Safety - {!! convertToStars($park->safety_avg) !!},
-                    Maintenance - {!! convertToStars($park->maintenance_avg) !!},
+                    Average Ratings:<br/>
+                    Safety - {!! convertToStars($park->safety_avg) !!}<br/>
+                    Maintenance - {!! convertToStars($park->maintenance_avg) !!}<br/>
                     Family Friendliness - {!! convertToStars($park->family_friendliness_avg) !!}
                 </p>
             </li>
@@ -48,7 +51,6 @@
         @endforelse
     </ul>
 
-    <a href="#" class="btn"><i class="fa fa-arrow-up"></i></a>
     <a href="#" class="btn hidden-btn"><i class="fa fa-arrow-up"></i></a>
 
     <script>
@@ -70,4 +72,15 @@
             });
         }
     </script>
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/homepg_styles.css') }}">
+   
+    <style>
+        .btnClor {
+            background-color: #da9181; 
+            color: white;
+        }
+    </style>
+@endpush
+
 @endsection
