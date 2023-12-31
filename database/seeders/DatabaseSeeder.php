@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\City;
 use App\Models\Park;
+use App\Models\ParkReview;
 use Illuminate\Database\Seeder;
 use App\Models\RestaurantReview;
 use Illuminate\Support\Facades\DB;
@@ -34,15 +35,24 @@ class DatabaseSeeder extends Seeder
         // //     'email' => 'test@example.com',
         // // ]);
 
-        \App\Models\Restaurant::factory(15)->create();
+        // \App\Models\Restaurant::factory(15)->create();
 
-        Park::factory(15)->create();
+        // Park::factory(15)->create();
         
-        for($i=0; $i<3; $i++){
-            $restaurants = DB::table('restaurants')->get();
-            foreach($restaurants as $restaurant){
-                RestaurantReview::factory()->create([
-                'restaurant_id' => $restaurant->id,
+        // for($i=0; $i<5; $i++){
+        //     $restaurants = DB::table('restaurants')->get();
+        //     foreach($restaurants as $restaurant){
+        //         RestaurantReview::factory()->create([
+        //         'restaurant_id' => $restaurant->id,
+        //         ]);
+        //     }
+        // }
+
+        for($i=0; $i<5; $i++){
+            $parks = DB::table('parks')->get();
+            foreach($parks as $park){
+                ParkReview::factory()->create([
+                'park_id' => $park->id,
                 ]);
             }
         }

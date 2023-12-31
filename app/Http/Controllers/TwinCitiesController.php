@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Park;
+use App\Models\ParkReview;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use App\Models\RestaurantReview;
@@ -45,6 +47,42 @@ class TwinCitiesController extends Controller
         if (Auth::check()){
             // dd(auth()->user()->id, $restaurant->id);  // Add this line for debugging
             return view('twincities.add_restaurant_review',['restaurant'=>$restaurant]);
+        }
+        else{
+            return redirect('/login')->with('message', 'You must sign in to add a review.');
+        }
+    }
+
+    public function display_parks(){
+        $parksWithInfo = DB::select("
+                SELECT parks.id, parks.name, COUNT(reviews.id) as review_count,
+                AVG(reviews.safety) as safety_avg,
+                AVG(reviews.maintenance) as maintenance_avg,
+                AVG(reviews.family_friendliness) as family_friendliness_avg
+        FROM parks
+        LEFT JOIN park_reviews as reviews ON parks.id = reviews.park_id
+        WHERE parks.city_id = 1
+        GROUP BY parks.id, parks.name
+        ");
+
+        $parks = Park::where('city_id', 1)->get();
+
+        return view('twincities.parks', [
+            'parks' => $parksWithInfo,
+        ]);
+    }
+
+    public function display_park_reviews(Park $park){
+        $parkId = $park->id;
+        $park_reviews = ParkReview::where('park_id', $parkId)->get();
+        return view('twincities.park_review',['park'=>$park, 'park_reviews'=>$park_reviews]);
+    }
+
+    public function add_park_review(Park $park){
+        // echo "dfghj";
+        if (Auth::check()){
+            // dd(auth()->user()->id, $restaurant->id);  // Add this line for debugging
+            return view('twincities.add_park_review',['park'=>$park]);
         }
         else{
             return redirect('/login')->with('message', 'You must sign in to add a review.');

@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\TwinCitiesController;
+use App\Http\Controllers\UncheckedParkReviewController;
 use App\Http\Controllers\UncheckedRestaurantReviewController;
 /*
 |--------------------------------------------------------------------------
@@ -43,26 +44,38 @@ Route::any('/home', [HomeController::class, 'index'])->name('home');
 
 // city wise destinations
 Route::get('/home/twincities', [TwinCitiesController::class, 'home']);
+
+// twin cities' restaurants
 Route::get('/home/twincities/restaurants', [TwinCitiesController::class,'display_restaurants']);
 Route::any('/home/twincities/addRestaurantReview/{restaurant}', [TwinCitiesController::class, 'add_restaurant_review']);
-
 Route::get('/home/twincities/restaurants/{restaurant}', [TwinCitiesController::class,'display_restaurant_reviews']);
-
 Route::post('/home/twincities/newRestaurantReview', [UncheckedRestaurantReviewController::class, 'addReview'])->name('addUncheckedRestaurantReview');
 
+// twin cities' parks
+Route::get('/home/twincities/parks', [TwinCitiesController::class,'display_parks']);
+Route::any('/home/twincities/addParkReview/{park}', [TwinCitiesController::class, 'add_park_review']);
+Route::get('/home/twincities/parks/{park}', [TwinCitiesController::class,'display_park_reviews']);
+Route::post('/home/twincities/newParkReview', [UncheckedParkReviewController::class, 'addReview'])->name('addUncheckedParkReview');
+
+// sending and viewing contact us messages
 Route::get('/contact_us', [MessageController::class, 'contact_us_form']);
 Route::post('/contact_us', [MessageController::class, 'create']);
+Route::get('/view-messages', [MessageController::class, 'view_messages']);
 
 Route::get('/check-reviews', function() { return view('unchecked_reviews');});
-// Route::get('/check-restaurant-reviews', [UncheckedRestaurantReviewController::class, 'check_reviews']);
-Route::get('/check-restaurant-reviews/{id?}', [UncheckedRestaurantReviewController::class, 'check_reviews']);
 
+// check restaurant reviews
+Route::get('/check-restaurant-reviews/{id?}', [UncheckedRestaurantReviewController::class, 'check_reviews']);
 // Route for approving a review
 Route::post('/approve-restaurant-review/{id}', [UncheckedRestaurantReviewController::class, 'approveReview'])->name('approveRestaurantReview');
 // Route for discarding a review
 Route::post('/discard-restaurant-review/{id}', [UncheckedRestaurantReviewController::class, 'discardReview'])->name('discardRestaurantReview');
 
+// check park reviews
+Route::get('/check-park-reviews/{id?}', [UncheckedParkReviewController::class, 'check_reviews']);
+// Route for approving a review
+Route::post('/approve-park-review/{id}', [UncheckedParkReviewController::class, 'approveReview'])->name('approveParkReview');
+// Route for discarding a review
+Route::post('/discard-park-review/{id}', [UncheckedParkReviewController::class, 'discardReview'])->name('discardParkReview');
 
 
-
-Route::get('/view-messages', [MessageController::class, 'view_messages']);

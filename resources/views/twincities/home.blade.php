@@ -43,7 +43,6 @@
     <div class="pg-content">
         <a href="twincities/restaurants"><div class="restaurants"><h1>Restaurants</h1></div></a>
         <a href="twincities/parks"><div class="parks"><h1>Parks</h1></div></a>
-        <a href="twincities/transport" ><div class="transport"><h1>Transport</h1></div></a>
     </div>
     <footer></footer>
 </body>

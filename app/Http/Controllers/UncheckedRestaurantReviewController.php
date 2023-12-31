@@ -12,6 +12,7 @@ class UncheckedRestaurantReviewController extends Controller
     public function addReview(Request $request){
 
         // Validate the request data
+        // dd($request->restaurant_id);
         $validatedData = $request->validate([
             'comments' => 'nullable|string',
             'safety' => 'required|numeric|min:0|max:5',
@@ -70,7 +71,7 @@ class UncheckedRestaurantReviewController extends Controller
         // Delete the unchecked review
         $uncheckedReview->delete();
 
-        return redirect()->back()->with('success', 'Review approved successfully!');
+        return redirect()->back()->with('message', 'Review approved successfully!');
     }
 
     // Discard a review
@@ -81,6 +82,6 @@ class UncheckedRestaurantReviewController extends Controller
         // Delete the unchecked review
         $uncheckedReview->delete();
 
-        return redirect()->back()->with('success', 'Review discarded successfully!');
+        return redirect()->back()->with('message', 'Review discarded successfully!');
     }
 }
