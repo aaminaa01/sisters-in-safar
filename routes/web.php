@@ -53,5 +53,16 @@ Route::post('/home/twincities/newRestaurantReview', [UncheckedRestaurantReviewCo
 Route::get('/contact_us', [MessageController::class, 'contact_us_form']);
 Route::post('/contact_us', [MessageController::class, 'create']);
 
-Route::get('/check-reviews', [UncheckedRestaurantReviewController::class, 'check_reviews']);
+Route::get('/check-reviews', function() { return view('unchecked_reviews');});
+// Route::get('/check-restaurant-reviews', [UncheckedRestaurantReviewController::class, 'check_reviews']);
+Route::get('/check-restaurant-reviews/{id?}', [UncheckedRestaurantReviewController::class, 'check_reviews']);
+
+// Route for approving a review
+Route::post('/approve-restaurant-review/{id}', [UncheckedRestaurantReviewController::class, 'approveReview'])->name('approveRestaurantReview');
+// Route for discarding a review
+Route::post('/discard-restaurant-review/{id}', [UncheckedRestaurantReviewController::class, 'discardReview'])->name('discardRestaurantReview');
+
+
+
+
 Route::get('/view-messages', [MessageController::class, 'view_messages']);

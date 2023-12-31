@@ -106,7 +106,7 @@ function generateStars($rating) {
             $user = auth()->user();
         @endphp
         @if ( $user->role == 'admin')
-            <a href="{{ url('/pendingReviews/$restaurant->id') }}" >New Reviews</a>
+            <a href="/check-restaurant-reviews/{{$restaurant->id}}" >New Reviews</a>
         @else
             <a href="/home/twincities/addRestaurantReview/{{$restaurant->id}}">Add Review</a>
         @endif

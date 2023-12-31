@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use App\Models\RestaurantReview;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class TwinCitiesController extends Controller
@@ -14,8 +15,23 @@ class TwinCitiesController extends Controller
     }
 
     public function display_restaurants(){
+        $restaurantsWithInfo = DB::select("
+                SELECT restaurants.id, restaurants.name, COUNT(reviews.id) as review_count,
+                AVG(reviews.safety) as safety_avg,
+                AVG(reviews.hygiene) as hygiene_avg,
+                AVG(reviews.ambiance) as ambiance_avg,
+                AVG(reviews.staff_behaviour) as staff_behaviour_avg
+        FROM restaurants
+        LEFT JOIN restaurant_reviews as reviews ON restaurants.id = reviews.restaurant_id
+        WHERE restaurants.city_id = 1
+        GROUP BY restaurants.id, restaurants.name
+        ");
+
         $restaurants = Restaurant::where('city_id', 1)->get();
-        return view('twincities.restaurants',['restaurants' => $restaurants]);
+
+        return view('twincities.restaurants', [
+            'restaurants' => $restaurantsWithInfo,
+        ]);
     }
 
     public function display_restaurant_reviews(Restaurant $restaurant){

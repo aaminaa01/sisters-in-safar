@@ -16,18 +16,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        City::factory()->create([
-            'name' => 'Twin Cities',
-        ]);
+        // City::factory()->create([
+        //     'name' => 'Twin Cities',
+        // ]);
 
-        City::factory()->create([
-            'name' => 'Lahore',
-        ]);
+        // City::factory()->create([
+        //     'name' => 'Lahore',
+        // ]);
 
-        City::factory()->create([
-            'name' => 'Karachi',
-        ]);
-        \App\Models\User::factory(20)->create();
+        // City::factory()->create([
+        //     'name' => 'Karachi',
+        // ]);
+        // \App\Models\User::factory(20)->create();
 
         // // \App\Models\User::factory()->create([
         // //     'name' => 'Test User',
