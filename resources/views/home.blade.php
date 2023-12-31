@@ -1,15 +1,13 @@
-<!-- resources/views/home.blade.php -->
 
-@extends('layouts.app')
+@extends('templates.layout')
+@include('templates.flash-message')
+
+@section('titleContent')
+    <H1>sistersInسفر</H1>
+    <H4 id="tagline">Empowering Pakistani women to travel and explore safely.</H4>
+@endsection
 
 @section('content')
-    <header>
-
-        <div id="title">
-            <h1>sistersInسفر</h1>
-            <h4 id="tagline">Empowering Pakistani women to travel and explore safely.</h4>
-        </div>
-    </header>
 
     <div class="pg-content row">
         <div class="about-section col-8">
@@ -38,7 +36,8 @@
             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout...</p>
         </div>
     </div>
-
-    <footer></footer>
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/homepg_styles.css') }}">
+@endpush
 
 @endsection

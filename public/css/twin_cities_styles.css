@@ -5,26 +5,84 @@ body {
     /* color: #151015; */
     box-sizing: border-box;
 }
-footer {
-    background-color: #151015;
-    height: 10%;
-}
 
-/* header styling */
 header {
-    padding-top: 40px;
-    text-align: center;
-    height: auto;
-    min-height: 80vh;
-    width: 100%;
-    background-image: url(../images/boat_in_mountains.jpg);
+    min-height: 65vh;
+    background-image: url(../images/twin_cities.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     background-color: rgba(255,255,255,0.6);
     background-blend-mode: lighten;
+}
+
+.pg-content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.restaurants{
+    box-sizing: border-box;
+    margin: 0px 15px;
+    width: 300px;
+    height: 300px;
+    float: left;
+    background-image: url(../images/restaurants.jpg);
+    background-repeat: no-repeat;
+    background-attachment: local;
+    background-size: cover;
+    background-color: rgba(255,255,255,0.4);
+    background-blend-mode: lighten;
+    justify-content: center;
+    align-items: center;
+    padding-top: 110px;
+    text-align: center;
+}
+.parks{
+    box-sizing: border-box;
+    margin: 0px 15px;
+    width: 300px;
+    height: 300px;
+    float: left;
+    background-image: url(../images/parks.jpg);
+    background-repeat: no-repeat;
+    background-attachment:local;
+    background-size: cover;
+    background-color: rgba(255,255,255,0.4);
+    background-blend-mode: lighten;
+    justify-content: center;
+    align-items: center;
+    padding-top: 110px;
+    text-align: center;
+}
+
+.transport {
+    box-sizing: border-box;
+    margin: 0px 15px;
+    width: 300px;
+    height: 300px;
+    float: left;
+    background-image: url(../images/transport.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(255,255,255,0.4);
+    background-blend-mode: lighten;
+    justify-content: center;
+    align-items: center;
+    padding-top: 110px;
+    text-align: center;
+}
+a {
+    color: #151015;
+}
+
+#active{
+    background-color: #ffb5a4;
+    color:white;
+    border-radius: 5px;
     
 }
+
 .navbar {
     text-align: center;
     background-color: #ffeada;
@@ -118,80 +176,6 @@ header {
 #tagline {
     color: #151015;
 }
-.pg-content {
-    justify-content: center;
-    font-size: x-large;
-    padding: 3px;
-    
-}
-
-.socials{
-    margin-left: 3%;
-    color: #151015;
-}
-
-.socials a{
-    color: #aa8371;
-}
-
-.send-a-msg {
-    margin-right: 3%;
-}
-
-.form{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: large;
-    margin-left: 35px;
-    width: 80%;
-    background-color: #ffb5a4;
-    border-radius: 2px;
-    text-align: left;
-    padding: 2%;
-    border-radius: 10px;
-}
-
-.input-box {
-    margin: 4px;
-}
-
-input, textarea {
-    background-color: #fff;
-    border-radius: 3px;
-}
-
-input[type=text], textarea[type=text]{
-    width:100%;
-    border:2px solid #fff;
-    border-radius:5px;
-    margin:8px 0;
-    outline:none;
-    padding:8px;
-    box-sizing:border-box;
-  }
-  
-  input[type=text]:focus, textarea[type=text]:focus{
-    border-color:#151015;
-    box-shadow:0 0 8px 0 #151015;
-  }
-
-  input[type=button] {
-    width:100%;
-    border:2px solid #151015;
-    border-radius:5px;
-    margin:8px 0;
-    outline:none;
-    padding:8px;
-    box-sizing:border-box;
-    background-color: #151015;
-    color: #fff;
-    font-size: 15px;
-  }
-
-  input[type=button]:focus-within {
-    border-color:#e1d5d8;
-    box-shadow:0 0 8px 0 #e1d5d8;
-  }
-
 .col-1 {width: 8.33%;}
 .col-2 {width:16.66%;}
 .col-3 {width:25%;}
@@ -204,3 +188,10 @@ input[type=text], textarea[type=text]{
 .col-10 {width:83.33%;}
 .col-11 {width:91.66%;}
 .col-12 {width:100%;}
+
+.pg-content {
+    display: flex;
+    margin: 2%;
+    padding: 5px;
+    align-self:center;
+}

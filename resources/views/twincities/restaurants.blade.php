@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sistersInSafar</title>
-    <link rel="stylesheet" href="../../../css/homepg_styles.css">
-    <link rel="stylesheet" href="../../../css/restaurants.css">
-    <link rel="icon" href="../../../images/logo.PNG" type="image/icon type">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
+@extends('templates.layout')
+@include('templates.flash-message')
+@section('titleContent')
+    <H1>Restaurants in the Twin Cities</H1>
+    <H4 id="tagline">Eateries around Pindi and Islamabad rated and reviewed by female travelers</H4>
+@endsection        
+@section('content')   
     <h1>Restaurants in City 1</h1>
 
     @php
@@ -29,7 +24,7 @@
     @endphp
 
     <div>
-        <label for="sortCriteria">Sort by:</label>
+        <label for="sortCriteria">Sort by(high to low):</label>
         <select id="sortCriteria" onchange="sortResults()">
             <option value="safety">Safety Rating</option>
             <option value="hygiene">Hygiene Rating</option>
@@ -40,7 +35,7 @@
 
     <ul id="restaurantsList">
         @forelse ($restaurants as $restaurant)
-            <li>
+            <li data-safety="{{ $restaurant->safety_avg }}" data-ambiance="{{ $restaurant->ambiance_avg }}" data-hygiene="{{ $restaurant->hygiene_avg }}" data-staff-behaviour="{{ $restaurant->staff_behaviour_avg }}">
                 <a href="/home/twincities/restaurants/{{$restaurant->id}}">
                     {{ $restaurant->name }}
                 </a>
@@ -68,17 +63,10 @@
             var sortCriteria = document.getElementById("sortCriteria").value;
 
             var sortedItems = Array.from(items).sort((a, b) => {
-                // Extract numeric ratings from the text content of list items
-                var ratingA = parseFloat(a.textContent.split("-")[1]);
-                var ratingB = parseFloat(b.textContent.split("-")[1]);
+                var ratingA = parseFloat(a.getAttribute("data-" + sortCriteria)) || 0;
+                var ratingB = parseFloat(b.getAttribute("data-" + sortCriteria)) || 0;
 
-                // Compare ratings for sorting based on the selected criteria
-                if (sortCriteria === 'safety') return ratingB - ratingA;
-                if (sortCriteria === 'hygiene') return ratingB - ratingA;
-                if (sortCriteria === 'ambiance') return ratingB - ratingA;
-                if (sortCriteria === 'staff_behaviour') return ratingB - ratingA;
-
-                return 0;
+                return ratingB - ratingA;
             });
 
             // Clear the list and append the sorted items
@@ -88,5 +76,9 @@
             });
         }
     </script>
-</body>
-</html>
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/homepg_styles.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/restaurants.css') }}">
+@endpush
+@endsection

@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sistersInSafar</title>
-    <link rel="stylesheet" href="../../../css/homepg_styles.css">
-    <link rel="stylesheet" href="../../../css/restaurants.css">
-    <link rel="icon" href="../../../images/logo.PNG" type="image/icon type">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
+@extends('templates.layout')
+@include('templates.flash-message')
+
+@section('content')   
     <h1>Parks in City 1</h1>
 
     @php
@@ -29,17 +21,17 @@
     @endphp
 
     <div>
-        <label for="sortCriteria">Sort by:</label>
+        <label for="sortCriteria">Sort by(hight to low):</label>
         <select id="sortCriteria" onchange="sortResults()">
             <option value="safety">Safety</option>
-            <option value="hygiene">Maintenance</option>
-            <option value="ambiance">Family Friendliness</option>
+            <option value="maintenance">Maintenance</option>
+            <option value="family_friendliness">Family Friendliness</option>
         </select>
     </div>
 
     <ul id="parksList">
         @forelse ($parks as $park)
-            <li>
+            <li data-safety="{{ $park->safety_avg }}" data-maintenance="{{ $park->maintenance_avg }}" data-family-friendliness="{{ $park->family_friendliness_avg }}">
                 <a href="/home/twincities/parks/{{$park->id}}">
                     {{ $park->name }}
                 </a>
@@ -61,30 +53,21 @@
 
     <script>
         function sortResults() {
-            var list = document.getElementById("restaurantsList");
+            var list = document.getElementById("parksList");
             var items = list.getElementsByTagName("li");
             var sortCriteria = document.getElementById("sortCriteria").value;
 
             var sortedItems = Array.from(items).sort((a, b) => {
-                // Extract numeric ratings from the text content of list items
-                var ratingA = parseFloat(a.textContent.split("-")[1]);
-                var ratingB = parseFloat(b.textContent.split("-")[1]);
+                var ratingA = parseFloat(a.getAttribute("data-" + sortCriteria)) || 0;
+                var ratingB = parseFloat(b.getAttribute("data-" + sortCriteria)) || 0;
 
-                // Compare ratings for sorting based on the selected criteria
-                if (sortCriteria === 'safety') return ratingB - ratingA;
-                if (sortCriteria === 'hygiene') return ratingB - ratingA;
-                if (sortCriteria === 'ambiance') return ratingB - ratingA;
-                if (sortCriteria === 'staff_behaviour') return ratingB - ratingA;
-
-                return 0;
+                return ratingB - ratingA;
             });
 
-            // Clear the list and append the sorted items
-            list.innerHTML = "";
+            list.innerHTML = ""; // Clear the list
             sortedItems.forEach(item => {
                 list.appendChild(item);
             });
         }
     </script>
-</body>
-</html>
+@endsection

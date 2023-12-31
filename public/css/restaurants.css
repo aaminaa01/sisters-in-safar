@@ -1,0 +1,65 @@
+body {
+    background-color: white;
+}
+header {
+    background-image: url(../images/kebab.jpg);
+}
+.restaurant {
+    width: 300px;
+    height: 300px;
+    box-sizing: border-box;
+    margin:30px;
+    padding: 30px;
+}
+.restaurant-img {
+    height: 250px;
+    width: 250px;
+}
+.flex-box {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.restaurant {
+    height: 370px;
+    box-sizing: border-box;
+    margin-right: 48px;
+    margin-left: 48px;
+    float: left;
+    padding-top: 0;
+    /* border: 1px solid pink; */
+    justify-content: center;
+    text-align: center;
+}
+
+
+.checked {
+    color: #942654;
+  }
+  
+  .btn {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 99;
+    font-size: 15px;
+    background-color: white;
+    border: white;
+    outline: #ffffff;
+    color: #101015;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 3px; 
+    border-radius: 4px;
+  }
+  
+  .hidden-btn {
+    position: absolute;
+    background-color: white;
+    color: white;
+    border: white;
+    outline: white;
+    cursor: inherit;
+  }

@@ -1,38 +1,12 @@
-<!-- resources/views/contact_us.blade.php -->
 
-@extends('layouts.app')
-
+@extends('templates.layout')
+@include('templates.flash-message')
+@section('titleContent')
+    <H1>sistersInسفر</H1>
+    <H4 id="tagline">Empowering Pakistani women to travel and explore safely.</H4>
+@endsection
 @section('content')
-    <header>
-        <div class="navbar">
-            <div class="logo">
-                <a href="{{ route('home') }}"><img width="50px" height="50px" src="{{ asset('images/logo.PNG') }}" alt="logo"></a>
-            </div>
-            <div id="menu">
-                <a href="{{ route('home') }}">Home</a>
-                <div class="dropdown">
-                    <p class="dropbtn">Destinations
-                        <i class="fa fa-caret-down"></i>
-                    </p>
-                    <div class="dropdown-content">
-                        <a href="">Twin Cities</a>
-                        <a href="">Northern Areas</a>
-                        <a href="">Lahore</a>
-                        <a href="">Karachi</a>
-                    </div>
-                </div>
-                <a style="color: rgb(85, 77, 77);" id="active" href="/contact_us">Contact Us</a>
-                <a href="{{ route('login') }}">Sign In/ Sign Up</a>
-            </div>
-        </div>
-
-        <div id="title">
-            <h1>sistersInسفر</h1>
-            <h4 id="tagline">Empowering Pakistani women to travel and explore safely.</h4>
-        </div>
-    </header>
-@include('layouts.flash-message')
-
+    
     <div class="pg-content row">
         <div class="col-5 send-a-msg">
             <h2>Get in touch!</h2>
@@ -62,5 +36,9 @@
             <p>YouTube&nbsp;&nbsp;<a href="">sistersInSafar</a></p>
         </div>
     </div>
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/homepg_styles.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('css/contact_styles.css') }}">
+@endpush
 @endsection

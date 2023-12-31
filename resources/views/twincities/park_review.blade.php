@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sistersInSafar</title>
-    <link rel="stylesheet" href="../../../css/homepg_styles.css">
-    <link rel="stylesheet" href="../../../css/restaurants.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="../../../images/logo.PNG" type="image/icon type">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-   <style>
-      .checked {
-         color: orange;
-         }
-   </style>
-</head>
+@extends('templates.layout')
+@include('templates.flash-message')
+
+@section('content')
 @php
 function generateStars($rating) {
     $stars = '';
@@ -38,7 +25,7 @@ function generateStars($rating) {
     return $stars;
 }
 @endphp
-<body>
+
     <div class="navbar">
       <div class="logo">
             <a href="../../../html/home.html"><img width="50px" height="50px" src="../../../images/logo.PNG" alt="logo"></a>
@@ -151,5 +138,4 @@ function generateStars($rating) {
         }
 
     </script>
-</body>
-</html>
+@endsection

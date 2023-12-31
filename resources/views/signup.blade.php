@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sistersInSafar</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>               
-</head>
-<body>
-    
+@extends('templates.layout')
+@include('templates.flash-message')
+@section('titleContent')
+    <H1>sistersInسفر</H1>
+    <H4 id="tagline">Empowering Pakistani women to travel and explore safely.</H4>
+@endsection
+@section('content')
     <div class="container">
         <form action="/users/register" method="post">
         @csrf
@@ -47,10 +42,15 @@
             </div>
    
             <div class="mt-8">
-                <span>Don't have an account? <a href="signup.html" class="link signup-link">Sign up!</a></span>
+                <span>Don't have an account? <a href="/login" class="link signup-link">Log in!</a></span>
             </div>
              </form>
             
     </div>
-</body>
-</html>
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/homepg_styles.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/login_up_styles.css') }}">
+@endpush
+@endsection
