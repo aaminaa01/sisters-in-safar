@@ -58,9 +58,7 @@
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <div class="card-body">
-                    @php
-
-                        <span class="reviewedBy">Reviewed by: 
+                    
                         {{ $restaurant_review->comments }}<br>
                         <span class="safety" rating={{$restaurant_review->safety}}>Safety: {!! generateStars($restaurant_review->safety) !!}</span><br>
                         <span class="hygiene" rating={{$restaurant_review->hygiene}}>Hygiene: {!! generateStars($restaurant_review->hygiene) !!}</span><br>

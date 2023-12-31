@@ -39,10 +39,10 @@
         </div>
     </div>
 
-    <div class="row justify-content-center">
+    <div id="restaurantsList" class="row justify-content-center">
         @forelse ($restaurants as $restaurant)
             <div class="col-md-3 mb-4">
-                <div class="card">
+                <div class="card" data-safety="{{ $restaurant->safety_avg }}" data-hygiene="{{ $restaurant->hygiene_avg }}" data-ambiance="{{ $restaurant->ambiance_avg }}" data-staff_behaviour="{{ $restaurant->staff_behaviour_avg }}">
                     <a href="/home/twincities/restaurants/{{$restaurant->id}}">
                         <img src="{{ asset('images/twin_cities_restaurant.jpg') }}" alt="{{ $restaurant->name }}" class="card-img-top">
                     </a>
@@ -69,26 +69,27 @@
     <script>
         function sortResults() {
             var list = document.getElementById("restaurantsList");
-            var items = list.getElementsByTagName("li");
+            var items = list.getElementsByClassName("card");
             var sortCriteria = document.getElementById("sortCriteria").value;
 
-            var sortedItems = Array.from(items).sort((a, b) => {
-                var ratingA = parseFloat(a.getAttribute("data-" + sortCriteria)) || 0;
-                var ratingB = parseFloat(b.getAttribute("data-" + sortCriteria)) || 0;
+            items.sort((a, b) => {
+            var ratingA = parseFloat(a.getAttribute("data-" + sortCriteria)) || 0;
+            var ratingB = parseFloat(b.getAttribute("data-" + sortCriteria)) || 0;
 
-                return ratingB - ratingA;
+            return ratingB - ratingA;
             });
 
-            // Clear the list and append the sorted items
-            list.innerHTML = "";
-            sortedItems.forEach(item => {
+            // Reorder the items in the DOM without changing structure
+            items.forEach(item => {
                 list.appendChild(item);
             });
         }
+        
     </script>
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/homepg_styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/restaurants.css') }}">
    
     <style>
         .btn-color {

@@ -1,11 +1,16 @@
 @extends('templates.layout')
 @include('templates.flash-message')
+
+@section('scriptsAndLinks')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+@endsection
+
 @section('titleContent')
-<H1>Parks in the Twin Cities</H1>
+<H1 class="font-weight-bold display-3">Parks in the Twin Cities</H1>
     <H4 id="tagline">Parks and outdoor attractions rated and reviewed by female travelers</H4>
 @endsection
 @section('content')   
-    <h1>Parks in City 1</h1>
 
     @php
         // Function to convert numeric rating to yellow star representation
@@ -23,9 +28,9 @@
         }
     @endphp
 
-    <div>
-        <label for="sortCriteria">Sort by(hight to low):</label>
-        <select id="sortCriteria" class="btnColor" onchange="sortResults()">
+    <div  class="d-flex  justify-content-end align-items-center">
+        <label for="sortCriteria">Sort by(high to low):</label>
+        <select id="sortCriteria" class="btnColor  rounded custom-select" onchange="sortResults()">
             <option value="safety">Safety</option>
             <option value="maintenance">Maintenance</option>
             <option value="family_friendliness">Family Friendliness</option>
@@ -74,9 +79,10 @@
     </script>
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/homepg_styles.css') }}">
-   
+    <link rel="stylesheet" href="{{ asset('css/parks.css') }}">
+    
     <style>
-        .btnClor {
+        .btnColor {
             background-color: #da9181; 
             color: white;
         }
