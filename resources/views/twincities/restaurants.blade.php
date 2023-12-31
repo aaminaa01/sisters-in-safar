@@ -1,12 +1,16 @@
 @extends('templates.layout')
 @include('templates.flash-message')
+
+@section('scriptsAndLinks')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+@endsection
+
 @section('titleContent')
-    <H1>Restaurants in the Twin Cities</H1>
+    <H1 class="font-weight-bold display-3">Restaurants in the Twin Cities</H1>
     <H4 id="tagline">Eateries around Pindi and Islamabad rated and reviewed by female travelers</H4>
 @endsection        
-@section('content')   
-    <h1>Restaurants in City 1</h1>
 
+@section('content')   
     @php
         // Function to convert numeric rating to yellow star representation
         function convertToStars($rating) {
@@ -23,35 +27,42 @@
         }
     @endphp
 
-    <div>
-        <label for="sortCriteria">Sort by(high to low):</label>
-        <select id="sortCriteria" onchange="sortResults()">
-            <option value="safety">Safety Rating</option>
-            <option value="hygiene">Hygiene Rating</option>
-            <option value="ambiance">Ambiance Rating</option>
-            <option value="staff_behaviour">Staff Behaviour Rating</option>
-        </select>
+    <div class="d-flex  justify-content-end align-items-center">
+        <div>
+            <label for="sortCriteria">Sort by (high to low):</label>
+            <select id="sortCriteria" class="btn-color rounded custom-select" onchange="sortResults()">
+                <option value="safety">Safety</option>
+                <option value="hygiene">Hygiene</option>
+                <option value="ambiance">Ambiance</option>
+                <option value="staff_behaviour">Staff Behaviour</option>
+            </select>
+        </div>
     </div>
 
-    <ul id="restaurantsList">
+    <div class="row justify-content-center">
         @forelse ($restaurants as $restaurant)
-            <li data-safety="{{ $restaurant->safety_avg }}" data-ambiance="{{ $restaurant->ambiance_avg }}" data-hygiene="{{ $restaurant->hygiene_avg }}" data-staff-behaviour="{{ $restaurant->staff_behaviour_avg }}">
-                <a href="/home/twincities/restaurants/{{$restaurant->id}}">
-                    {{ $restaurant->name }}
-                </a>
-                <p>Number of Reviews: {{ $restaurant->review_count }}</p>
-                <p>
-                    Average Ratings: 
-                    Safety - {!! convertToStars($restaurant->safety_avg) !!},
-                    Hygiene - {!! convertToStars($restaurant->hygiene_avg) !!},
-                    Ambiance - {!! convertToStars($restaurant->ambiance_avg) !!},
-                    Staff Behavior - {!! convertToStars($restaurant->staff_behaviour_avg) !!}
-                </p>
-            </li>
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <a href="/home/twincities/restaurants/{{$restaurant->id}}">
+                        <img src="{{ asset('images/twin_cities_restaurant.jpg') }}" alt="{{ $restaurant->name }}" class="card-img-top">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $restaurant->name }}</h5>
+                        <p class="card-text">Number of Reviews: {{ $restaurant->review_count }}</p>
+                        <p class="card-text display-6">
+                            Average Ratings:<br/> 
+                            Safety - {!! convertToStars($restaurant->safety_avg) !!}<br/> 
+                            Hygiene - {!! convertToStars($restaurant->hygiene_avg) !!}<br/> 
+                            Ambiance - {!! convertToStars($restaurant->ambiance_avg) !!}<br/> 
+                            Staff Behavior - {!! convertToStars($restaurant->staff_behaviour_avg) !!}
+                        </p>
+                    </div>
+                </div>
+            </div>
         @empty
-            <li>No restaurants found in this city.</li>
+            <p>No restaurants found in this city.</p>
         @endforelse
-    </ul>
+    </div>
 
     <a href="#" class="btn"><i class="fa fa-arrow-up"></i></a>
     <a href="#" class="btn hidden-btn"><i class="fa fa-arrow-up"></i></a>
@@ -76,9 +87,16 @@
             });
         }
     </script>
+
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/homepg_styles.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('css/restaurants.css') }}">
+   
+    <style>
+        .btn-color {
+            background-color: #da9181; 
+            color: white;
+        }
+    </style>
 @endpush
+
 @endsection

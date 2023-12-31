@@ -13,6 +13,7 @@
      .checked {color: orange;
      }
     </style>
+    @yield('scriptsAndLinks')
     @stack('styles')
 
 </head>

@@ -1,0 +1,25 @@
+header {
+    background-image: url(../images/kebab.jpg);
+}
+
+
+.checked {
+    color: #942654;
+  }
+
+  .row {
+    width: 100%;
+  }
+.leave-review {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    height: 30px;
+    background-color: #ffb5a4;
+    padding-top: 1%;
+    border-radius:  2%;
+}
+.pg-content a{
+    color: #010105;
+}

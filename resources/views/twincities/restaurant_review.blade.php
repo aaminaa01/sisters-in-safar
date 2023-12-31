@@ -1,6 +1,16 @@
 @extends('templates.layout')
 @include('templates.flash-message')
-
+@section('scriptsAndLinks')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+@endsection
+@section('titleContent')
+    <H1 class="font-weight-bold display-3">Restaurants</H1>
+        <H4 id="tagline">Eateries around Pindi and Islamabad rated and reviewed by female travelers</H4>
+        <p style="color:rgb(85, 77, 77); background-color: rgba(255, 255,255,0.5);">
+            {{ $restaurant->name }}<br>
+            
+        </p>
+@endsection
 @section('content')   
 @php
 function generateStars($rating) {
@@ -25,15 +35,6 @@ function generateStars($rating) {
     return $stars;
 }
 @endphp
-
-    <div id="title">
-        <H1>Restaurants</H1>
-        <H4 id="tagline">Eateries around Pindi and Islamabad rated and reviewed by female travelers</H4>
-        <p style="color:rgb(85, 77, 77); background-color: rgba(255, 255,255,0.5);">
-            {{ $restaurant->name }}<br>
-            
-        </p>
-    </div>
 
     <div class="dropdown">
         <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -116,4 +117,9 @@ function generateStars($rating) {
         }
 
     </script>
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/homepg_styles.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/reviews.css') }}">
+@endpush
 @endsection
