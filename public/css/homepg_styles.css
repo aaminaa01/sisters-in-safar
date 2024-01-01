@@ -152,21 +152,100 @@ header {
     padding-top: 5px;
     padding-bottom: 5px;
 }
-.mission {
+.mission-box {
     text-align: center;
     align-items: center;
+    justify-content: center;
+    float: right;
+    /* background-color: #ffb5a4; */
+    height: auto;
+    color: black;
+    padding: 4px;
+    padding-top: 0%;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+}
+.story {
+    margin-bottom: 50px; /* Increase the space between "Story" and "Mission" */
+}
+.anonymous-reviews{
+    margin-top: 3%;
     float: right;
     background-color: #ffb5a4;
     height: auto;
-    color: white;
+    color: black;
     padding: 4px;
     padding-top: 0%;
     border-radius: 15px;
 }
-
 #active{
     background-color: #ffb5a4;
     color:white;
     border-radius: 5px;
     
+}
+
+@media only screen and (max-width: 767px) {
+    header {
+        height: auto;
+        min-height: 60vh; /* Adjust as needed */
+    }
+
+    .navbar {
+        padding: 10px;
+    }
+
+    #title {
+        font-size: x-large;
+        padding-top: 5%;
+    }
+
+    #menu {
+        float: none;
+        text-align: center;
+        padding-left: 0;
+    }
+
+    #menu a, .dropdown .dropbtn {
+        float: none;
+        display: block;
+        padding: 10px;
+        padding-right: 0;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .dropdown-content {
+        left: auto;
+        top: 0;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .logo {
+        float: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .pg-content {
+        display: block;
+        margin: 2%;
+        padding: 5px;
+    }
+
+    .about-section {
+        margin-right: 0;
+    }
+
+    .what-we-do {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .mission {
+        float: none;
+        padding-top: 5%;
+    }
 }

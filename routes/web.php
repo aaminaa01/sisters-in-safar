@@ -29,7 +29,7 @@ Route::get('/', function () {return view('home');
 
     
 // signing up
-Route::view('/signup', [UserAuthController::class, 'signup'])->name('signupform');
+Route::view('/signup', [UserAuthController::class, 'signup'])->name('register');
 Route::post('/users/register', [UserAuthController::class, 'create'])->name('signup');
 
 // signing in
@@ -58,7 +58,7 @@ Route::get('/home/twincities/parks/{park}', [TwinCitiesController::class,'displa
 Route::post('/home/twincities/newParkReview', [UncheckedParkReviewController::class, 'addReview'])->name('addUncheckedParkReview');
 
 // sending and viewing contact us messages
-Route::get('/contact_us', [MessageController::class, 'contact_us_form']);
+Route::get('/contact_us', [MessageController::class, 'contact_us_form'])->name('contact_us');
 Route::post('/contact_us', [MessageController::class, 'create']);
 Route::get('/view-messages', [MessageController::class, 'view_messages']);
 

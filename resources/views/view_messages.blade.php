@@ -19,9 +19,6 @@
                 <div class="card-body">
                     <p class="card-text">{{ $message->message }}</p>
                 </div>
-                <div class="card-footer text-muted">
-                    Created at: {{ $message->created_at }}
-                </div>
             </div>
         @endforeach
 
