@@ -38,7 +38,7 @@ class TwinCitiesController extends Controller
 
     public function display_restaurant_reviews(Restaurant $restaurant){
         $restaurantId = $restaurant->id;
-        $restaurant_reviews = RestaurantReview::where('restaurant_id', $restaurantId)->get();
+        $restaurant_reviews = RestaurantReview::where('restaurant_id', $restaurantId)->simplePaginate(6);
         return view('twincities.restaurant_review',['restaurant'=>$restaurant, 'restaurant_reviews'=>$restaurant_reviews]);
     }
 
@@ -74,7 +74,7 @@ class TwinCitiesController extends Controller
 
     public function display_park_reviews(Park $park){
         $parkId = $park->id;
-        $park_reviews = ParkReview::where('park_id', $parkId)->get();
+        $park_reviews = ParkReview::where('park_id', $parkId)->simplePaginate(6);;
         return view('twincities.park_review',['park'=>$park, 'park_reviews'=>$park_reviews]);
     }
 

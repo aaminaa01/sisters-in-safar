@@ -37,8 +37,8 @@
             return $stars;
         }
     @endphp
-
-    <div class="d-flex justify-content-end mb-3">
+    <div class="container">
+    <div class="d-flex justify-content-end align-items-center  mb-3">
         @auth
             @php
                 $user = auth()->user();
@@ -53,35 +53,57 @@
         @endauth
     </div>
 
-    <div class="row">
+    <div class="d-flex  justify-content-start align-items-center mb-3">
+    <div>
+        <label for="sortCriteria">Sort by:</label>
+        <select id="sortCriteria" class="btnColor rounded custom-select">
+            <option  onclick="sortReviews('safety', 'desc')" value="safety">Safety(High to Low)</option>
+            <option  onclick="sortReviews('safety', 'asc')" value="safety">Safety(Low to High)</option>
+            <option  onclick="sortReviews('hygiene', 'desc')" value="hygiene">Hygiene(High to Low)</option>
+            <option  onclick="sortReviews('hygiene', 'asc')" value="hygiene">Hygiene(Low to High)</option>
+            <option  onclick="sortReviews('ambiance', 'desc')" value="ambiance">Ambiance(High to Low)</option>
+            <option  onclick="sortReviews('ambiance', 'asc')" value="ambiance">Ambiance(Low to High)</option>
+            <option  onclick="sortReviews('staff_behaviour', 'desc')" value="staff_behaviour">Staff Behavior(High to Low)</option>
+            <option  onclick="sortReviews('staff_behaviour', 'asc')" value="staff_behaviour">Staff Behavior(Low to High)</option>
+            </select>
+    </div>
+    </div>
+    </div>
+
+    <div class="reviews-container row mx-3">
         @foreach($restaurant_reviews as $index => $restaurant_review)
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <div class="card-body">
-                    
                         {{ $restaurant_review->comments }}<br>
                         <span class="safety" rating={{$restaurant_review->safety}}>Safety: {!! generateStars($restaurant_review->safety) !!}</span><br>
                         <span class="hygiene" rating={{$restaurant_review->hygiene}}>Hygiene: {!! generateStars($restaurant_review->hygiene) !!}</span><br>
-                        <span class="ambience" rating={{$restaurant_review->ambience}}>Ambiance: {!! generateStars($restaurant_review->ambience) !!}</span><br>
+                        <span class="ambiance" rating={{$restaurant_review->ambiance}}>Ambiance: {!! generateStars($restaurant_review->ambiance) !!}</span><br>
                         <span class="staff_behaviour" rating={{$restaurant_review->staff_behaviour}}>Staff Behaviour: {!! generateStars($restaurant_review->staff_behaviour) !!}</span>
                     </div>
                 </div>
             </div>
             @if (($index + 1) % 3 == 0)
-                </div><div class="row">
+                </div><div class="row mx-3">
             @endif
         @endforeach
     </div>
+<div class="d-flex justify-content-center ">
+    {{ $restaurant_reviews->links() }}
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <script>
         function sortReviews(criteria, order) {
             // Get the reviews container
-            var reviewsContainer = document.getElementById('reviews-container');
+            var reviewsContainer = document.querySelector('.reviews-container');
             
             // Convert the reviews to an array for sorting
             var reviewsArray = Array.from(reviewsContainer.children);
+            console.log(reviewsArray);
+            console.log(criteria);
+            console.log("-----");
 
             // Sort the array based on the selected criteria and order
             reviewsArray.sort(function(a, b) {

@@ -25,13 +25,6 @@ body{
     color: #151015;
 }
 
-header {
-    min-height: 50vh;
-}
-#title {
-    padding: 5px;
-    padding-top: 40px;
-}
 .form-content{
     width: 100%;
     box-sizing: border-box;
@@ -113,10 +106,3 @@ form{
     text-decoration: underline;
 }
 
-
-@media screen and (max-width: 400px) {
-    .form{
-        padding: 20px 10px;
-    }
-    
-}

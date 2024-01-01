@@ -25,7 +25,7 @@
             </div>
                 <!-- Navbar Links -->
             <div id="menu">
-                <a href="/" style="color: rgb(85, 77, 77);" id="active">Home</a>
+                <a href="/" >Home</a>
                 <div class="dropdown">
                     <p class="dropbtn">Destinations
                       <i class="fa fa-caret-down"></i>
@@ -66,7 +66,8 @@
     <main>
         @yield('content')
     </main>
-    <footer>
+    <footer class=">
+        <p>&copy; 2023 sistersInسفر. All rights reserved.</p>
     </footer>
 </body>
 </html>

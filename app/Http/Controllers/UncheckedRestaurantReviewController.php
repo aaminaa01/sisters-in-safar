@@ -29,7 +29,7 @@ class UncheckedRestaurantReviewController extends Controller
         // Check if the review was successfully created
         if ($review) {
             // You can add a success flash message or redirect the user to a thank you page
-            return redirect()->route('home')->with('success', 'Review submitted successfully!');
+            return redirect()->back()->with('message', 'Review submitted successfully!');
         } else {
             // Handle the case where the review creation failed
             return back()->with('error', 'Failed to submit review. Please try again.');

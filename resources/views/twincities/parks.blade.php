@@ -28,52 +28,65 @@
         }
     @endphp
 
-    <div  class="d-flex  justify-content-end align-items-center">
-        <label for="sortCriteria">Sort by(high to low):</label>
-        <select id="sortCriteria" class="btnColor  rounded custom-select" onchange="sortResults()">
-            <option value="safety">Safety</option>
-            <option value="maintenance">Maintenance</option>
-            <option value="family_friendliness">Family Friendliness</option>
-        </select>
+    <div class="d-flex justify-content-end align-items-center">
+        <div>
+            <label for="sortCriteria">Sort by (high to low):</label>
+            <select id="sortCriteria" class="btnColor rounded custom-select">
+                <option onclick="sortResults('safety')" value="safety">Safety</option>
+                <option onclick="sortResults('maintenance')" value="maintenance">Maintenance</option>
+                <option onclick="sortResults('family_friendliness')" value="family_friendliness">Family Friendliness</option>
+            </select>
+        </div>
     </div>
 
-    <ul id="parksList">
+    <div id="parksList" class="row justify-content-center">
         @forelse ($parks as $park)
-            <li data-safety="{{ $park->safety_avg }}" data-maintenance="{{ $park->maintenance_avg }}" data-family-friendliness="{{ $park->family_friendliness_avg }}">
-                <a href="/home/twincities/parks/{{$park->id}}">
-                    {{ $park->name }}
-                </a>
-                <p>Number of Reviews: {{ $park->review_count }}</p>
-                <p>
-                    Average Ratings:<br/>
-                    Safety - {!! convertToStars($park->safety_avg) !!}<br/>
-                    Maintenance - {!! convertToStars($park->maintenance_avg) !!}<br/>
-                    Family Friendliness - {!! convertToStars($park->family_friendliness_avg) !!}
-                </p>
-            </li>
+            <div class="col-md-3 mb-4 mx-4">
+                <div class="card" data-safety="{{ $park->safety_avg }}" data-maintenance="{{ $park->maintenance_avg }}" data-family_friendliness="{{ $park->family_friendliness_avg }}">
+                    <a href="/home/twincities/parks/{{$park->id}}">
+                        <img src="{{ asset('images/twincities_park.jpg') }}" alt="{{ $park->name }}" class="card-img-top">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $park->name }}</h5>
+                        <p class="card-text">Number of Reviews: {{ $park->review_count }}</p>
+                        
+                            Average Ratings:<br/> 
+                            <span class="safety" rating={{$park->safety_avg}}>Safety - {!! convertToStars($park->safety_avg) !!}</span><br>
+                            <span class="maintenance" rating={{$park->maintenance_avg}}>Maintenance - {!! convertToStars($park->maintenance_avg) !!}</span><br>
+                            <span class="family_friendliness" rating={{$park->family_friendliness_avg}}>Family Friendliness - {!! convertToStars($park->family_friendliness_avg) !!}</span><br>
+                    </div>
+                </div>
+            </div>
         @empty
-            <li>No parks found in this city.</li>
+            <p>No parks found in this city.</p>
         @endforelse
-    </ul>
+    </div>
 
     <a href="#" class="btn hidden-btn"><i class="fa fa-arrow-up"></i></a>
 
     <script>
-        function sortResults() {
-            var list = document.getElementById("parksList");
-            var items = list.getElementsByTagName("li");
-            var sortCriteria = document.getElementById("sortCriteria").value;
+        function sortResults(criteria) {
+            var parksList = document.querySelector('#parksList');
+            
+            // Convert the reviews to an array for sorting
+            var parksArray = Array.from(parksList.children);
+            console.log(parksArray);
+            console.log(criteria);
 
-            var sortedItems = Array.from(items).sort((a, b) => {
-                var ratingA = parseFloat(a.getAttribute("data-" + sortCriteria)) || 0;
-                var ratingB = parseFloat(b.getAttribute("data-" + sortCriteria)) || 0;
+            parksArray.sort(function(a, b) {
+                var aCriteria = parseInt((a.querySelector('span.' + criteria).getAttribute('rating')), 10);
+                var bCriteria = parseInt((b.querySelector('span.' + criteria).getAttribute('rating')), 10);
 
-                return ratingB - ratingA;
+                return bCriteria - aCriteria;
+               
             });
 
-            list.innerHTML = ""; // Clear the list
-            sortedItems.forEach(item => {
-                list.appendChild(item);
+            // Empty the container
+            parksList.innerHTML = '';
+
+            // Append the sorted reviews to the container
+            parksArray.forEach(function(review) {
+                parksList.appendChild(review);
             });
         }
     </script>
