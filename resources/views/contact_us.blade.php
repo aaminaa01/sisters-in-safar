@@ -1,10 +1,11 @@
 
 @extends('templates.layout')
-@include('templates.flash-message')
 @section('scriptsAndLinks')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 @endsection
+@include('templates.flash-message')
+
 @section('titleContent')
     <H1 class="font-weight-bold display-3">sistersInسفر</H1>
     <H4 id="tagline">Empowering Pakistani women to travel and explore safely.</H4>
@@ -19,12 +20,12 @@
                 <form action="/contact_us" method="post">
                     @csrf
                     <div class="input-box">
-                        <label for="email-box">Email:</label>
-                        <input type="text"id="email-box" placeholder="Email">
+                        <label for="sender_email">Email:</label>
+                        <input type="text" name="sender_email" id="sender_email" placeholder="Email">
                     </div>
                     <div class="input-box message-box">
-                        <label for="msg-box">Your message:</label>
-                        <textarea type="text" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" type="textarea" id="msg-box" placeholder="Message"></textarea>
+                        <label for="message">Your message:</label>
+                        <textarea type="text" name="message" id="message" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" type="textarea" id="msg-box" placeholder="Message"></textarea>
                     </div>
                     <div class="button">
                         <button class="btn d-flex justify-content-center" type="submit" value="submit" >Send</button>

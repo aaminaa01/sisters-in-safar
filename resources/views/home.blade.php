@@ -1,6 +1,5 @@
 
 @extends('templates.layout')
-@include('templates.flash-message')
 
 @section('titleContent')
     <H1>sistersInسفر</H1>

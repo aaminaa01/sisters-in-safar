@@ -1,8 +1,8 @@
 @extends('templates.layout')
-@include('templates.flash-message')
 @section('titleContent')
     <H1>The Twin Cities</H1>
 @endsection
+
 @section('content')      
     <div class="pg-content">
         <a href="twincities/restaurants"><div class="restaurants"><h1>Restaurants</h1></div></a>

@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {   
-    protected $timestamps = false;
+    public $timestamps = false;
     use HasFactory;
 }

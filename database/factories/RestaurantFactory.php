@@ -28,60 +28,38 @@ class RestaurantFactory extends Factory
             "Bun Bun Bake & Grill" => 1,
             "The Mall 1927" => 1,
             "Cafe Crunch" => 1,
+            // Additional Restaurants for Rawalpindi and Islamabad
+            "Islamabad Serena Hotel" => 1,
+            "Khaadi Cafe" => 1,
+            "Chaaye Khana" => 1,
+            "Tuscany Courtyard" => 1,
+            "Dera Restaurant" => 1,
+            "Street 1 Cafe" => 1,
+            "Ginyaki Sushi Bar" => 1,
+            "Savour Foods" => 1,
+            "China Town" => 1,
+            "Nando's" => 1,
+            // More additions
+            "KFC" => 1,
+            "Pizza Hut" => 1,
+            "McDonald's" => 1,
+            "Café Aylanto" => 1,
+            "The Warehouse" => 1,
+            "OPTP" => 1,
+            "Arizona Grill" => 1,
+            "Cafe 99" => 1,
+            "Kabul Restaurant" => 1,
+            "Gloria Jean's Coffees" => 1,
+            // Add more as needed
         ];
-    $cityTwoRestaurants = array(
-        "Monal Restaurant Lahore" => 2,
-        "Cosa Nostra" => 2,
-        "Cafe Zouk" => 2,
-        "Lahore Social" => 2,
-        "Cafe Aylanto" => 2,
-        "Cooco's Den" => 2,
-        "Butler's Chocolate Cafe" => 2,
-        "Arcadian Cafe" => 2,
-        "Andaaz Restaurant" => 2,
-        "Nando's" => 2,
-        "Gourmet Restaurant" => 2,
-        "SALT Bistro" => 2,
-        "Cafe Barbera" => 2,
-        "Gloria Jean's Coffees" => 2,
-        "Spice Bazaar" => 2,
-        "The Lahore Social" => 2,
-        "Bundu Khan Restaurant" => 2,
-        "Ziafat" => 2,
-        "Gun Smoke" => 2,
-        "Yum Chinese & Thai" => 2,
-        "Wok This Way" => 2,
-        "Dera Restaurant" => 2,
-        "Hardees" => 2,
-        "Cafe Costa" => 2,
-        "Cinnamon Kitchen" => 2,
-        "Ginsoy Extreme Chinese" => 2,
-        "Del Frio" => 2
-    );
-    $cityThreeRestaurants = array(
-        "BBQ Tonight" => 3,
-        "Kolachi Restaurant" => 3,
-        "Bombay Chowpatty" => 3,
-        "Ginsoy - SMCHS Branch" => 3,
-        "Mocha Cafe" => 3,
-        "Cafe Zaiqa" => 3,
-        "Sakura" => 3,
-        "Chachi Restaurant" => 3,
-        "Kabab-Ji" => 3,
-        "Pizza Hut" => 3
-    );
-
-    $allRestaurants = array_merge($cityOneRestaurants, $cityTwoRestaurants, $cityThreeRestaurants); // Merge all city arrays
-
+        
         do{
-        // Shuffle restaurant names from all cities to avoid early selection bias
-        Arr::shuffle($allRestaurants);
 
         // Check for available restaurants:
         $restaurantKey = null;
         $cityId = null;
-        $restaurantKey = array_rand($allRestaurants);
-        $cityId = $allRestaurants[$restaurantKey];
+        $restaurantKey = array_rand($cityOneRestaurants);
+        $cityId = $cityOneRestaurants[$restaurantKey];
         $existingRecord =  DB::table('restaurants')->where('city_id',$cityId)->where('name', $restaurantKey)->find(1); 
         if(!$existingRecord) {
             return [
